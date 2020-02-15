@@ -14,7 +14,7 @@ public class Reddit {
 
   public static void main(String[] args) {
     Reddit r = new Reddit();
-    System.out.println(r.get64YoutubeLinks());
+    System.out.println(r.getRequest());
   }
 
   public ArrayList<String> get64YoutubeLinks() {
@@ -70,7 +70,7 @@ public class Reddit {
       // Create connection
       url = new URL(targetURL);
       connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestProperty("User-Agent", "Mozilla Steelhacks2020GoogleClout");
+      connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows 10; Win64; x64; rv:56.0)");
       connection.setRequestMethod("GET");
       connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
