@@ -76,4 +76,12 @@ public enum Color {
   public int getCode() {
     return code;
   }
+
+  public static String toString(Color color){
+    if(color == BLANK) return "BLANK";
+    if(color == GREEN) return "GREEN";
+    if(color == RED) return "RED";
+    if(color == AMBER) return "AMBER";
+    return "OTHER";
+  }
 }

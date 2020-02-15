@@ -93,7 +93,7 @@ public class Launchpad implements Receiver {
             color.getCode());
     receiver.send(message, -1);
     if(color.getCode() != 0) {
-      System.out.println(pad.getCommand() + ", " + this.channel.channelForSystem() + ", " + pad.getCode() + ", " + color.getCode());
+      System.out.println(pad.getCommand() + ", " + this.channel.channelForSystem() + ", " + pad.getCode() + ", " + color.getCode() + ", " + Color.toString(color));
     }
   }
 

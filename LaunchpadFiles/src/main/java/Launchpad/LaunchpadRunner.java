@@ -9,6 +9,7 @@ public class LaunchpadRunner implements LaunchpadReceiver {
 
     private final List<PadRunner> pads;
     private final Launchpad lp;
+    private boolean loaded;
 
     public LaunchpadRunner() throws MidiUnavailableException {
         this.lp = new Launchpad(this);
@@ -102,12 +103,48 @@ public class LaunchpadRunner implements LaunchpadReceiver {
         pads.add(new PadRunner(Pad.H7));
         pads.add(new PadRunner(Pad.H8));
         pads.add(new PadRunner(Pad.H));
+
+        loaded = false;
+    }
+
+    public PadRunner getPadRunner(int padX, int padY){
+        return pads.get( padX + (padY * 9) );
     }
 
     public void onLights() throws InvalidMidiDataException {
-        for (PadRunner spot : pads) {
-            spot.onLight(lp);
+        for (PadRunner pad : pads) {
+            pad.onLight(lp);
         }
+    }
+
+    public void loadingAnimation() throws InvalidMidiDataException, InterruptedException {
+        System.out.println("Loading...");
+        for(int y = 1; y < 9; y++){
+            for(int x = 0; x < 8; x++){
+                PadRunner padR = getPadRunner(x, y);
+                Pad pad = padR.getPad();
+                if(loaded){
+                    padR.setColor(lp, pad, Color.BLANK);
+                }else {
+                    padR.setColor(lp, pad, Color.RED);
+                }
+                Thread.sleep(30);
+            }
+        }
+    }
+
+    public PadRunner[][] getButtons(){
+        System.out.println();
+        //System.out.println("Pads:");
+        PadRunner[][] buttons = new PadRunner[8][9];
+        for(int y = 0; y < 9; y++){
+            for(int x = 0; x < 8; x++) {
+                buttons[x][y] = this.getPadRunner(x, y);
+                //System.out.println(buttons[x][y].getPad() + " in on? " + buttons[x][y].isOn());
+            }
+        }
+        //System.out.println();
+        return buttons;
     }
 
     @Override
