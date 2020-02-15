@@ -27,14 +27,12 @@ public class Reddit {
     return out;
   }
 
-  public ArrayList<String> getYoutubeLinks() {
-    String subReddit = getRequest();
-    ArrayList<String> subRedditPosts = new ArrayList<String>();
-    int searchIndex = 0;
-    while (subReddit.substring(searchIndex, subReddit.length() - 1).contains("www.youtube.com/embed")) // while
-                                                                                                       // subreddit
-                                                                                                       // contains the
-                                                                                                       // link
+  public ArrayList<String> getYoutubeLinks() 
+  {
+	String subReddit = getRequest();
+    ArrayList<String> subRedditPosts  = new ArrayList<String>();
+	int searchIndex = 0;
+    while(subReddit.contains("www.youtube.com/embed")) //while subreddit contains the link
     {
       int L = subReddit.indexOf("youtube.com/embed");
       int firstQuoteIndex = subReddit.indexOf("\"");
