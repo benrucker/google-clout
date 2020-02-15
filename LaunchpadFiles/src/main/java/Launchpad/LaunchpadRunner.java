@@ -105,7 +105,6 @@ public class LaunchpadRunner implements LaunchpadReceiver {
     }
 
     public void onLights() throws InvalidMidiDataException {
-        //System.out.println("tick");
         for (PadRunner spot : pads) {
             spot.onLight(lp);
         }
